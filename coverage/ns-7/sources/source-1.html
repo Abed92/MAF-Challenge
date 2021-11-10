@@ -1,0 +1,177 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BestHotelServiceImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.availablehotels.service.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: BestHotelServiceImpl (com.example.availablehotels.service.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BestHotelServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    13.6%
+  </span>
+  <span class="absValue">
+    (3/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.example.availablehotels.service.impl;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.example.availablehotels.dao.HotelProviderDao;
+<i class="no-highlight">4</i>&nbsp;import com.example.availablehotels.dto.BestHotelResponseDTO;
+<i class="no-highlight">5</i>&nbsp;import com.example.availablehotels.dto.ResponseDTO;
+<i class="no-highlight">6</i>&nbsp;import com.example.availablehotels.exception.ServerProcessingException;
+<i class="no-highlight">7</i>&nbsp;import com.example.availablehotels.model.BestHotel;
+<i class="no-highlight">8</i>&nbsp;import com.example.availablehotels.service.HotelProviderService;
+<i class="no-highlight">9</i>&nbsp;import com.example.availablehotels.webservice.base.BaseSearchRequest;
+<i class="no-highlight">10</i>&nbsp;import com.example.availablehotels.webservice.providers.besthotel.BestHotelResponse;
+<i class="no-highlight">11</i>&nbsp;import org.apache.commons.math3.util.Precision;
+<i class="no-highlight">12</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i class="no-highlight">13</i>&nbsp;import org.springframework.beans.factory.annotation.Qualifier;
+<i class="no-highlight">14</i>&nbsp;import org.springframework.http.HttpStatus;
+<i class="no-highlight">15</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i class="no-highlight">16</i>&nbsp;import org.springframework.stereotype.Service;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;import java.util.List;
+<i class="no-highlight">19</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;@Service
+<i class="no-highlight">22</i>&nbsp;@Qualifier(&quot;BestHotelServiceImpl&quot;)
+<i class="no-highlight">23</i>&nbsp;public class BestHotelServiceImpl implements HotelProviderService {
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    HotelProviderDao bestHotelDao;
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    public BestHotelServiceImpl (@Qualifier(&quot;BestHotelProviderDaoImpl&quot;) HotelProviderDao bestHotelDao)
+<b class="fc"><i class="no-highlight">30</i>&nbsp;    {</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        this.bestHotelDao = bestHotelDao;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;    }</b>
+<i class="no-highlight">33</i>&nbsp;    @Override
+<i class="no-highlight">34</i>&nbsp;    public ResponseEntity&lt;ResponseDTO&gt; getHotels(BaseSearchRequest request) {
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;        try {
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            request.isValid();</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;            List&lt;BestHotel&gt; hotels = bestHotelDao.getHotels(request);</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;            List&lt;BestHotelResponseDTO&gt; bestHotelResponseDTO = BuildResponseDTO(hotels);</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;            ResponseDTO&lt;BestHotelResponseDTO&gt; bestHotelResponse = new BestHotelResponse();</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;            bestHotelResponse.setResponse(bestHotelResponseDTO);</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;            return new ResponseEntity&lt;&gt;(bestHotelResponse, HttpStatus.OK);</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;            throw new ServerProcessingException(&quot;Invalid Response&quot;);</b>
+<i class="no-highlight">45</i>&nbsp;        }
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    private List&lt;BestHotelResponseDTO&gt; BuildResponseDTO(List&lt;BestHotel&gt; hotels) {
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;        try {
+<b class="nc"><i class="no-highlight">53</i>&nbsp;            List&lt;BestHotelResponseDTO&gt; bestHotelResponseDTOS = hotels.stream().map(item -&gt;</b>
+<i class="no-highlight">54</i>&nbsp;            {
+<b class="nc"><i class="no-highlight">55</i>&nbsp;                BestHotelResponseDTO bestHotelResponseDTO = new BestHotelResponseDTO();</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;                bestHotelResponseDTO.setHotelFare(Precision.round(item.getHotelFare(), 2));</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;                bestHotelResponseDTO.setHotelName(item.getHotelName());</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                bestHotelResponseDTO.setHotelRate(String.valueOf(item.getHotelRate()));</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;                bestHotelResponseDTO.setRoomAmenities(String.join(&quot;,&quot;, item.getRoomAmenities()));</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;                return bestHotelResponseDTO;</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;            }).collect(Collectors.toList());</b>
+<i class="no-highlight">62</i>&nbsp;
+<b class="nc"><i class="no-highlight">63</i>&nbsp;            return bestHotelResponseDTOS;</b>
+<i class="no-highlight">64</i>&nbsp;
+<b class="nc"><i class="no-highlight">65</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i class="no-highlight">66</i>&nbsp;            throw new ServerProcessingException(&quot;Invalid Response&quot;);</b>
+<i class="no-highlight">67</i>&nbsp;        }
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;    }
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-10 15:57</div>
+</div>
+</body>
+</html>

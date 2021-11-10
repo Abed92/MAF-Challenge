@@ -1,0 +1,125 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ExceptionHandlingController</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.availablehotels.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ExceptionHandlingController (com.example.availablehotels.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ExceptionHandlingController</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.example.availablehotels.controller;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.example.availablehotels.exception.BaseSearchRequestException;
+<i class="no-highlight">4</i>&nbsp;import com.example.availablehotels.exception.InvalidResponseException;
+<i class="no-highlight">5</i>&nbsp;import com.example.availablehotels.exception.responses.InvalidSearchResponse;
+<i class="no-highlight">6</i>&nbsp;import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.http.HttpStatus;
+<i class="no-highlight">8</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i class="no-highlight">9</i>&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler;
+<i class="no-highlight">10</i>&nbsp;import org.springframework.web.bind.annotation.RestControllerAdvice;
+<i class="no-highlight">11</i>&nbsp;import org.springframework.web.context.request.WebRequest;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;import java.time.LocalDateTime;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;@RestControllerAdvice
+<i class="no-highlight">16</i>&nbsp;public class ExceptionHandlingController {
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    @ExceptionHandler(value = {InvalidResponseException.class})
+<i class="no-highlight">20</i>&nbsp;    public ResponseEntity&lt;InvalidSearchResponse&gt; handleInvalidResponse(Exception ex) {
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;        InvalidSearchResponse invalidSearchResponse = new InvalidSearchResponse();
+<i class="no-highlight">23</i>&nbsp;        invalidSearchResponse.setTimestamp(LocalDateTime.now());
+<i class="no-highlight">24</i>&nbsp;        invalidSearchResponse.setError(ex.getMessage());
+<i class="no-highlight">25</i>&nbsp;        invalidSearchResponse.setStatus(3);
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;        return new ResponseEntity&lt;&gt;(invalidSearchResponse, HttpStatus.BAD_REQUEST);
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    }
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    @ExceptionHandler(value = {BaseSearchRequestException.class})
+<i class="no-highlight">33</i>&nbsp;    public ResponseEntity&lt;InvalidSearchResponse&gt; handleBaseSearchRequest(Exception ex) {
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;        InvalidSearchResponse invalidSearchResponse = new InvalidSearchResponse();
+<i class="no-highlight">36</i>&nbsp;        invalidSearchResponse.setTimestamp(LocalDateTime.now());
+<i class="no-highlight">37</i>&nbsp;        invalidSearchResponse.setError(ex.getMessage());
+<i class="no-highlight">38</i>&nbsp;        invalidSearchResponse.setStatus(1);
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;        return new ResponseEntity&lt;&gt;(invalidSearchResponse, HttpStatus.BAD_REQUEST);
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    @ExceptionHandler(value = {InvalidFormatException.class})
+<i class="no-highlight">45</i>&nbsp;    public ResponseEntity&lt;InvalidSearchResponse&gt; handleInvalidNumberParsing(Exception ex, WebRequest request) {
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;        System.out.println(request);
+<i class="no-highlight">48</i>&nbsp;        InvalidSearchResponse invalidSearchResponse = new InvalidSearchResponse();
+<i class="no-highlight">49</i>&nbsp;        invalidSearchResponse.setTimestamp(LocalDateTime.now());
+<i class="no-highlight">50</i>&nbsp;        invalidSearchResponse.setError(ex.getMessage());
+<i class="no-highlight">51</i>&nbsp;        invalidSearchResponse.setStatus(1);
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;        return new ResponseEntity&lt;&gt;(invalidSearchResponse, HttpStatus.BAD_REQUEST);
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    }
+<i class="no-highlight">56</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-10 15:57</div>
+</div>
+</body>
+</html>

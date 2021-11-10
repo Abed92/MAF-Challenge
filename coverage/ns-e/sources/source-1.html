@@ -1,0 +1,114 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SwaggerConfig</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.availablehotels.swagger</a>
+</div>
+
+<h1>Coverage Summary for Class: SwaggerConfig (com.example.availablehotels.swagger)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">SwaggerConfig$$EnhancerBySpringCGLIB$$73de2001</td>
+  </tr>
+  <tr>
+    <td class="name">SwaggerConfig$$EnhancerBySpringCGLIB$$73de2001$$FastClassBySpringCGLIB$$bf50f464</td>
+  </tr>
+  <tr>
+    <td class="name">SwaggerConfig$$FastClassBySpringCGLIB$$324cfc91</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.example.availablehotels.swagger;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import org.springframework.context.annotation.Bean;
+<i class="no-highlight">4</i>&nbsp;import org.springframework.context.annotation.Configuration;
+<i class="no-highlight">5</i>&nbsp;import springfox.documentation.builders.ApiInfoBuilder;
+<i class="no-highlight">6</i>&nbsp;import springfox.documentation.service.ApiInfo;
+<i class="no-highlight">7</i>&nbsp;import springfox.documentation.spi.DocumentationType;
+<i class="no-highlight">8</i>&nbsp;import springfox.documentation.spring.web.plugins.Docket;
+<i class="no-highlight">9</i>&nbsp;import springfox.documentation.swagger2.annotations.EnableSwagger2;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import static springfox.documentation.builders.PathSelectors.regex;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;@Configuration
+<i class="no-highlight">14</i>&nbsp;@EnableSwagger2
+<i class="no-highlight">15</i>&nbsp;public class SwaggerConfig {
+<i class="no-highlight">16</i>&nbsp;    /**
+<i class="no-highlight">17</i>&nbsp;     * Method to set paths to be included through swagger
+<i class="no-highlight">18</i>&nbsp;     *
+<i class="no-highlight">19</i>&nbsp;     * @return Docket
+<i class="no-highlight">20</i>&nbsp;     */
+<i class="no-highlight">21</i>&nbsp;    @Bean
+<i class="no-highlight">22</i>&nbsp;    public Docket configApi() {
+<i class="no-highlight">23</i>&nbsp;        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).pathMapping(&quot;/&quot;).select()
+<i class="no-highlight">24</i>&nbsp;                .paths(regex(&quot;/api.*&quot;)).build();
+<i class="no-highlight">25</i>&nbsp;    }
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    /**
+<i class="no-highlight">29</i>&nbsp;     * Method to set swagger info
+<i class="no-highlight">30</i>&nbsp;     *
+<i class="no-highlight">31</i>&nbsp;     * @return ApiInfoBuilder
+<i class="no-highlight">32</i>&nbsp;     */
+<i class="no-highlight">33</i>&nbsp;    private ApiInfo apiInfo() {
+<i class="no-highlight">34</i>&nbsp;        return new ApiInfoBuilder().title(&quot;&quot;).description(&quot;&quot;).version(&quot;1.0&quot;).build();
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-10 15:57</div>
+</div>
+</body>
+</html>

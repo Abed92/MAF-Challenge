@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BestHotelProviderDaoImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.availablehotels.dao.impl</a>
+</div>
+
+<h1>Coverage Summary for Class: BestHotelProviderDaoImpl (com.example.availablehotels.dao.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">BestHotelProviderDaoImpl</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.example.availablehotels.dao.impl;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.example.availablehotels.dao.HotelProviderDao;
+<i class="no-highlight">4</i>&nbsp;import com.example.availablehotels.model.BestHotel;
+<i class="no-highlight">5</i>&nbsp;import com.example.availablehotels.webservice.base.BaseSearchRequest;
+<i class="no-highlight">6</i>&nbsp;import org.springframework.beans.factory.annotation.Qualifier;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.stereotype.Repository;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import java.time.LocalDate;
+<i class="no-highlight">10</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">11</i>&nbsp;import java.util.List;
+<i class="no-highlight">12</i>&nbsp;import java.util.function.Predicate;
+<i class="no-highlight">13</i>&nbsp;import java.util.stream.Collectors;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;@Qualifier(&quot;BestHotelProviderDaoImpl&quot;)
+<i class="no-highlight">16</i>&nbsp;@Repository
+<i class="no-highlight">17</i>&nbsp;public class BestHotelProviderDaoImpl implements HotelProviderDao&lt;BestHotel&gt; {
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    @Override
+<i class="no-highlight">20</i>&nbsp;    public List&lt;BestHotel&gt; getHotels(BaseSearchRequest request) {
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;        request.isValid();
+<i class="no-highlight">23</i>&nbsp;        List&lt;BestHotel&gt; crazyHotels = buildBestHotels();
+<i class="no-highlight">24</i>&nbsp;        List&lt;BestHotel&gt; filterResult = searchResult(crazyHotels, request);
+<i class="no-highlight">25</i>&nbsp;        return filterResult;
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    private List&lt;BestHotel&gt; searchResult(List&lt;BestHotel&gt; bestHotel, BaseSearchRequest request) {
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;        if(bestHotel.size()==0)
+<i class="no-highlight">32</i>&nbsp;            return new ArrayList&lt;BestHotel&gt;();
+<i class="no-highlight">33</i>&nbsp;        Predicate&lt;BestHotel&gt; city = item -&gt; item.getCity().equalsIgnoreCase(request.getCity());
+<i class="no-highlight">34</i>&nbsp;        Predicate&lt;BestHotel&gt; numberOfAdults = item -&gt; item.getNumberOfAdults() == request.getNumberOfAdults();
+<i class="no-highlight">35</i>&nbsp;        Predicate&lt;BestHotel&gt; fromDate = item -&gt; item.getFromDate().equals((request.getFromDate()));
+<i class="no-highlight">36</i>&nbsp;        Predicate&lt;BestHotel&gt; toDate = item -&gt; item.getToDate().equals((request.getToDate()));
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;        List&lt;BestHotel&gt; resultLists = bestHotel.stream()
+<i class="no-highlight">40</i>&nbsp;                .filter(city
+<i class="no-highlight">41</i>&nbsp;                        .or(numberOfAdults)
+<i class="no-highlight">42</i>&nbsp;                        .or(fromDate)
+<i class="no-highlight">43</i>&nbsp;                        .or(toDate))
+<i class="no-highlight">44</i>&nbsp;                .collect(Collectors.toList());
+<i class="no-highlight">45</i>&nbsp;        return resultLists;
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;    private List&lt;BestHotel&gt; buildBestHotels() {
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;        BestHotel bestHotel1 = new BestHotel.BestHotelBuilder()
+<i class="no-highlight">54</i>&nbsp;                .withProviderName(&quot;Best Hotel&quot;)
+<i class="no-highlight">55</i>&nbsp;                .withHotelName(&quot;bestHotel1&quot;)
+<i class="no-highlight">56</i>&nbsp;                .withCity(&quot;AHU&quot;)
+<i class="no-highlight">57</i>&nbsp;                .withFromDate(LocalDate.parse(&quot;2022-12-23&quot;))
+<i class="no-highlight">58</i>&nbsp;                .withNumberOfAdults(2)
+<i class="no-highlight">59</i>&nbsp;                .withToDate(LocalDate.parse(&quot;2023-02-23&quot;))
+<i class="no-highlight">60</i>&nbsp;                .withPrice(53.0)
+<i class="no-highlight">61</i>&nbsp;                .withRate(3)
+<i class="no-highlight">62</i>&nbsp;                .withRoomAmenities(&quot;swimming bool , TV with cable, Hair Drier&quot;)
+<i class="no-highlight">63</i>&nbsp;                .build();
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;        BestHotel bestHotel2 = new BestHotel.BestHotelBuilder().withHotelName(&quot;bestHotel2&quot;)
+<i class="no-highlight">66</i>&nbsp;                .withCity(&quot;Amm&quot;)
+<i class="no-highlight">67</i>&nbsp;                .withFromDate(LocalDate.parse(&quot;2022-05-25&quot;))
+<i class="no-highlight">68</i>&nbsp;                .withNumberOfAdults(1)
+<i class="no-highlight">69</i>&nbsp;                .withToDate(LocalDate.parse(&quot;2023-01-03&quot;))
+<i class="no-highlight">70</i>&nbsp;                .withPrice(89.0)
+<i class="no-highlight">71</i>&nbsp;                .withRate(4)
+<i class="no-highlight">72</i>&nbsp;                .withRoomAmenities(&quot;swimming bool,TV with cable&quot;)
+<i class="no-highlight">73</i>&nbsp;                .withProviderName(&quot;Best Hotel&quot;)
+<i class="no-highlight">74</i>&nbsp;                .build();
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;        BestHotel bestHotel3 = new BestHotel.BestHotelBuilder().withHotelName(&quot;bestHotel3&quot;)
+<i class="no-highlight">77</i>&nbsp;                .withCity(&quot;Amm&quot;)
+<i class="no-highlight">78</i>&nbsp;                .withFromDate(LocalDate.parse(&quot;2020-05-25&quot;))
+<i class="no-highlight">79</i>&nbsp;                .withNumberOfAdults(1)
+<i class="no-highlight">80</i>&nbsp;                .withToDate(LocalDate.parse(&quot;2021-01-03&quot;))
+<i class="no-highlight">81</i>&nbsp;                .withPrice(89.0)
+<i class="no-highlight">82</i>&nbsp;                .withRate(5)
+<i class="no-highlight">83</i>&nbsp;                .withRoomAmenities(&quot;swimming bool,TV with cable&quot;)
+<i class="no-highlight">84</i>&nbsp;                .withProviderName(&quot;Best Hotel&quot;)
+<i class="no-highlight">85</i>&nbsp;                .build();
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;        List&lt;BestHotel&gt; crazyHotels = new ArrayList&lt;&gt;();
+<i class="no-highlight">88</i>&nbsp;        crazyHotels.add(bestHotel1);
+<i class="no-highlight">89</i>&nbsp;        crazyHotels.add(bestHotel2);
+<i class="no-highlight">90</i>&nbsp;        crazyHotels.add(bestHotel3);
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;
+<i class="no-highlight">93</i>&nbsp;        return crazyHotels;
+<i class="no-highlight">94</i>&nbsp;
+<i class="no-highlight">95</i>&nbsp;    }
+<i class="no-highlight">96</i>&nbsp;
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-10 15:57</div>
+</div>
+</body>
+</html>

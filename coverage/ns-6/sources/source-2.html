@@ -1,0 +1,278 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CrazyHotel</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+    @import "../../.css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../.js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.availablehotels.model</a>
+</div>
+
+<h1>Coverage Summary for Class: CrazyHotel (com.example.availablehotels.model)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CrazyHotel</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.7%
+  </span>
+  <span class="absValue">
+    (22/23)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CrazyHotel$CrazyHotelBuilder</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (11/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.7%
+  </span>
+  <span class="absValue">
+    (22/23)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.example.availablehotels.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.time.Instant;
+<i class="no-highlight">4</i>&nbsp;
+<b class="fc"><i class="no-highlight">5</i>&nbsp;public class CrazyHotel {</b>
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;    private String hotelName;
+<i class="no-highlight">8</i>&nbsp;    private String providerName;
+<i class="no-highlight">9</i>&nbsp;    private String rate;
+<i class="no-highlight">10</i>&nbsp;    private Double price;
+<i class="no-highlight">11</i>&nbsp;    private String[] amenities;
+<i class="no-highlight">12</i>&nbsp;    private Instant fromDate;
+<i class="no-highlight">13</i>&nbsp;    private Instant toDate;
+<i class="no-highlight">14</i>&nbsp;    private String city ;
+<i class="no-highlight">15</i>&nbsp;    private Integer numberOfAdults;
+<i class="no-highlight">16</i>&nbsp;    private Double roomDiscount;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    private CrazyHotel(CrazyHotelBuilder builder)
+<b class="fc"><i class="no-highlight">20</i>&nbsp;    {</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        this.amenities =builder.amenities;</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        this.city = builder.city;</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        this.numberOfAdults = builder.numberOfAdults;</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;        this.fromDate = builder.fromDate;</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        this.toDate = builder.toDate;</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        this.price = builder.price;</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        this.roomDiscount = builder.roomDiscount;</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        this.rate = builder.rate;</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        this.hotelName= builder.hotelName ;</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        this.providerName = builder.providerName;</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;    }</b>
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;
+<i class="no-highlight">34</i>&nbsp;    public String getProviderName() {
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        return providerName;</b>
+<i class="no-highlight">36</i>&nbsp;    }
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;    public String getHotelName() {
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        return hotelName;</b>
+<i class="no-highlight">40</i>&nbsp;    }
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    public String getRate() {
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        return rate;</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;    public Double getPrice() {
+<b class="fc"><i class="no-highlight">47</i>&nbsp;        return price;</b>
+<i class="no-highlight">48</i>&nbsp;    }
+<i class="no-highlight">49</i>&nbsp;
+<i class="no-highlight">50</i>&nbsp;    public String[] getAmenities() {
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        return amenities;</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    public Instant getFromDate() {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        return fromDate;</b>
+<i class="no-highlight">56</i>&nbsp;    }
+<i class="no-highlight">57</i>&nbsp;
+<i class="no-highlight">58</i>&nbsp;    public Instant getToDate() {
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        return toDate;</b>
+<i class="no-highlight">60</i>&nbsp;    }
+<i class="no-highlight">61</i>&nbsp;
+<i class="no-highlight">62</i>&nbsp;    public String getCity() {
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        return city;</b>
+<i class="no-highlight">64</i>&nbsp;    }
+<i class="no-highlight">65</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;    public Integer getNumberOfAdults() {
+<b class="fc"><i class="no-highlight">67</i>&nbsp;        return numberOfAdults;</b>
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;    public Double getRoomDiscount() {
+<b class="nc"><i class="no-highlight">71</i>&nbsp;        return roomDiscount;</b>
+<i class="no-highlight">72</i>&nbsp;    }
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;    public static class CrazyHotelBuilder
+<i class="no-highlight">75</i>&nbsp;    {
+<i class="no-highlight">76</i>&nbsp;        private String hotelName;
+<i class="no-highlight">77</i>&nbsp;        private String rate;
+<i class="no-highlight">78</i>&nbsp;        private Double price;
+<i class="no-highlight">79</i>&nbsp;        private String[] amenities;
+<i class="no-highlight">80</i>&nbsp;        private Instant fromDate;
+<i class="no-highlight">81</i>&nbsp;        private Instant toDate;
+<i class="no-highlight">82</i>&nbsp;        private String city ;
+<i class="no-highlight">83</i>&nbsp;        private Integer numberOfAdults;
+<i class="no-highlight">84</i>&nbsp;        private Double roomDiscount;
+<i class="no-highlight">85</i>&nbsp;        private String providerName;
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;
+<i class="no-highlight">90</i>&nbsp;        public CrazyHotelBuilder withProviderName(String providerName)
+<i class="no-highlight">91</i>&nbsp;        {
+<i class="no-highlight">92</i>&nbsp;            this.providerName = providerName;
+<i class="no-highlight">93</i>&nbsp;            return this;
+<i class="no-highlight">94</i>&nbsp;        }
+<i class="no-highlight">95</i>&nbsp;
+<i class="no-highlight">96</i>&nbsp;
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;        public CrazyHotelBuilder withHotelName(String hotelName)
+<i class="no-highlight">99</i>&nbsp;        {
+<i class="no-highlight">100</i>&nbsp;            this.hotelName = hotelName;
+<i class="no-highlight">101</i>&nbsp;            return this;
+<i class="no-highlight">102</i>&nbsp;        }
+<i class="no-highlight">103</i>&nbsp;
+<i class="no-highlight">104</i>&nbsp;        public CrazyHotelBuilder withRate(String rate)
+<i class="no-highlight">105</i>&nbsp;        {
+<i class="no-highlight">106</i>&nbsp;            this.rate = rate;
+<i class="no-highlight">107</i>&nbsp;            return this;
+<i class="no-highlight">108</i>&nbsp;        }
+<i class="no-highlight">109</i>&nbsp;
+<i class="no-highlight">110</i>&nbsp;        public  CrazyHotelBuilder withPrice(Double price)
+<i class="no-highlight">111</i>&nbsp;        {
+<i class="no-highlight">112</i>&nbsp;            this.price = price;
+<i class="no-highlight">113</i>&nbsp;            return this;
+<i class="no-highlight">114</i>&nbsp;        }
+<i class="no-highlight">115</i>&nbsp;
+<i class="no-highlight">116</i>&nbsp;
+<i class="no-highlight">117</i>&nbsp;        public CrazyHotelBuilder withRoomAmenities( String[] amenities)
+<i class="no-highlight">118</i>&nbsp;        {
+<i class="no-highlight">119</i>&nbsp;            this.amenities = amenities;
+<i class="no-highlight">120</i>&nbsp;            return this;
+<i class="no-highlight">121</i>&nbsp;        }
+<i class="no-highlight">122</i>&nbsp;
+<i class="no-highlight">123</i>&nbsp;
+<i class="no-highlight">124</i>&nbsp;        public CrazyHotelBuilder withFromDate(Instant fromDate)
+<i class="no-highlight">125</i>&nbsp;        {
+<i class="no-highlight">126</i>&nbsp;            this.fromDate = fromDate;
+<i class="no-highlight">127</i>&nbsp;            return this;
+<i class="no-highlight">128</i>&nbsp;        }
+<i class="no-highlight">129</i>&nbsp;
+<i class="no-highlight">130</i>&nbsp;
+<i class="no-highlight">131</i>&nbsp;        public CrazyHotelBuilder withToDate(Instant toDate)
+<i class="no-highlight">132</i>&nbsp;        {
+<i class="no-highlight">133</i>&nbsp;            this.toDate = toDate;
+<i class="no-highlight">134</i>&nbsp;            return this;
+<i class="no-highlight">135</i>&nbsp;        }
+<i class="no-highlight">136</i>&nbsp;
+<i class="no-highlight">137</i>&nbsp;        public  CrazyHotelBuilder withCity(String city)
+<i class="no-highlight">138</i>&nbsp;        {
+<i class="no-highlight">139</i>&nbsp;            this.city = city;
+<i class="no-highlight">140</i>&nbsp;            return this;
+<i class="no-highlight">141</i>&nbsp;        }
+<i class="no-highlight">142</i>&nbsp;
+<i class="no-highlight">143</i>&nbsp;
+<i class="no-highlight">144</i>&nbsp;        public CrazyHotelBuilder withNumberOfAdults(Integer numberOfAdults)
+<i class="no-highlight">145</i>&nbsp;        {
+<i class="no-highlight">146</i>&nbsp;            this.numberOfAdults = numberOfAdults;
+<i class="no-highlight">147</i>&nbsp;            return this;
+<i class="no-highlight">148</i>&nbsp;        }
+<i class="no-highlight">149</i>&nbsp;
+<i class="no-highlight">150</i>&nbsp;
+<i class="no-highlight">151</i>&nbsp;        public   CrazyHotelBuilder withRoomDiscount(Double roomDiscount)
+<i class="no-highlight">152</i>&nbsp;        {
+<i class="no-highlight">153</i>&nbsp;            this.roomDiscount = roomDiscount;
+<i class="no-highlight">154</i>&nbsp;            return this;
+<i class="no-highlight">155</i>&nbsp;        }
+<i class="no-highlight">156</i>&nbsp;
+<i class="no-highlight">157</i>&nbsp;        public CrazyHotel build()
+<i class="no-highlight">158</i>&nbsp;        {
+<i class="no-highlight">159</i>&nbsp;            return new CrazyHotel(this);
+<i class="no-highlight">160</i>&nbsp;        }
+<i class="no-highlight">161</i>&nbsp;
+<i class="no-highlight">162</i>&nbsp;    }
+<i class="no-highlight">163</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-11-10 15:57</div>
+</div>
+</body>
+</html>

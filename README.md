@@ -21,7 +21,7 @@ This Application contanins 3 services
 
 Testing Notes:
 
-The coverage report for this project is attached if you would like to take a look.please navigate to coverage folder and open index.html
+The coverage report for this project is attached if you would like to take a look. please **clone** the coverage folder and open index.html
 according to the coverage report there are 6 packages that are covered 100%.
 the tests involved the following for every service.
 1- Test if reponse retunred with a content
